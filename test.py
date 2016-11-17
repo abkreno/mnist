@@ -12,15 +12,17 @@ from pylab import *
 from numpy import *
 from load_mnist import load_mnist
 
+trainLimit = 20000
+testLimit  = 5000
 
 images_train, labels_train = load_mnist('training', path='data/')
 images_test, labels_test = load_mnist('testing', path='data/')
-# imshow(images_train.mean(axis=0), cmap=cm.gray)
-# show()
-labels_train = pd.DataFrame(data=labels_train)
-images_train = pd.DataFrame(data=images_train)
-labels_test = pd.DataFrame(data=labels_test)
-images_test = pd.DataFrame(data=images_test)
 
+labels_train = pd.DataFrame(data=labels_train[:trainLimit])
+images_train = pd.DataFrame(data=images_train[:trainLimit])
+labels_test = pd.DataFrame(data=labels_test[:testLimit])
+images_test = pd.DataFrame(data=images_test[:testLimit])
+
+print(images_train.shape)
 print(images_test.shape)
 #print(labels_train.value_counts())
