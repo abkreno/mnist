@@ -23,6 +23,14 @@ images_train = pd.DataFrame(data=images_train[:trainLimit])
 labels_test = pd.DataFrame(data=labels_test[:testLimit])
 images_test = pd.DataFrame(data=images_test[:testLimit])
 
-print(images_train.shape)
-print(images_test.shape)
+#print(images_train[26].value_counts())
+#print(images_test.shape)
 #print(labels_train.value_counts())
+X_train = images_train
+y_train = labels_train.values.ravel()
+X_test  = images_test
+y_test = labels_test.values.ravel()
+
+mlp = MLPRegressor(hidden_layer_sizes = (20,), random_state=0, early_stopping=True)
+mlp.fit(X_train, y_train) #Trains the classifier
+print(mlp.score(X_test, y_test)) #Gives accuracy score on test set
