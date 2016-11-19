@@ -381,13 +381,13 @@ As we saw from the previous results decreasing the momentum decreased the accura
 
 The batch size in the previous tests was min(200, n_samples) and since the number of samples is 20000 the batch size was 200 so the training style was mini batches
 
-Now we will try changing the training style to sequential by setting the batch size to the number of training samples = 20000 and see how it will affect the accuracy
+Now we will try changing the training style to batch by setting the batch size to the number of training samples = 20000 and see how it will affect the accuracy
 conf:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
   - activation relu f(x) = max(0, x)
-  - batch_size 20000 (sequential)
+  - batch_size 20000 (batch)
 score = 0.93959999999999999
              precision    recall  f1-score   support
 
@@ -405,7 +405,7 @@ score = 0.93959999999999999
 avg / total       0.94      0.94      0.94      5000
 
 
-sequential training style produced (93.9%) less accuracy than the mini batches training style
+batch training style produced (93.9%) less accuracy than the mini batches training style
 
 conf:
   - 300,300, hidden layers
@@ -413,8 +413,23 @@ conf:
   - max_iter 200
   - activation relu f(x) = max(0, x)
   - batch_size 1 (batch)
+score = 0.114312
+             precision    recall  f1-score   support
 
-batch training style produced () ___ accuracy than the mini batches training style
+          0       0.00      0.00      0.00       460
+          1       0.12      0.11      0.12       571
+          2       0.14      0.14      0.13       530
+          3       0.10      0.10      0.14       500
+          4       0.13      0.13      0.11       500
+          5       0.11      0.11      0.11       456
+          6       0.11      0.11      0.11       462
+          7       0.12      0.12      0.12       512
+          8       0.11      0.13      0.12       489
+          9       0.12      0.14      0.13       520
+
+avg / total       0.11      0.11      0.11      5000
+
+sequential training style produced (11.43%) much less accuracy than the mini batches and batches training style
 
 now trying something in between 200 and 20000 to test mini batches again but with higher batch size
 conf:
@@ -423,6 +438,21 @@ conf:
   - max_iter 200
   - activation relu f(x) = max(0, x)
   - batch_size 500 (batch)
+score = 0.9604
+               precision    recall  f1-score   support
+
+            0       0.96      0.99      0.98       460
+            1       0.97      0.98      0.98       571
+            2       0.96      0.97      0.96       530
+            3       0.95      0.98      0.97       500
+            4       0.96      0.96      0.96       500
+            5       0.96      0.96      0.96       456
+            6       0.98      0.94      0.96       462
+            7       0.96      0.95      0.95       512
+            8       0.94      0.96      0.95       489
+            9       0.96      0.93      0.94       520
+
+  avg / total       0.96      0.96      0.96      5000
 
 In all the previous tests the early stopping technique was used we will now disable it and see how the accuracy will be affected
 conf:
@@ -430,3 +460,27 @@ conf:
   - early_stopping False
   - max_iter 200
   - activation relu f(x) = max(0, x)
+score = 0.9658
+               precision    recall  f1-score   support
+
+            0       0.97      0.98      0.97       460
+            1       0.97      0.99      0.98       571
+            2       0.95      0.97      0.96       530
+            3       0.95      0.98      0.97       500
+            4       0.97      0.96      0.96       500
+            5       0.98      0.96      0.97       456
+            6       0.97      0.96      0.96       462
+            7       0.97      0.95      0.96       512
+            8       0.96      0.95      0.96       489
+            9       0.97      0.96      0.96       520
+
+  avg / total       0.97      0.97      0.97      5000
+
+
+Without the early stopping the accuracy of the MLP increased to 96.58% higher than 96.4% with early stopping
+
+This is the plotting for the validation and training errors when using MLP with 2 layers <300, 300> and without early stopping
+
+* IMAGE GOES HERE
+
+As we can see the error on of the validation starts to increase at some point while the learning error isn't changed at this moment its better to stop the training
