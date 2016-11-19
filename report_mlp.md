@@ -1,6 +1,6 @@
 - Multi layer with 1 hidden layer and tanh as the activation function
 
-conf:
+configuration:
   - 20, hidden layers
   - early_stopping True
   - max_iter 200
@@ -22,7 +22,7 @@ score = 0.9164
 avg / total       0.92      0.92      0.92      5000
 
 
-conf:
+configuration:
   - 50, hidden layers
   - early_stopping True
   - max_iter 200
@@ -43,7 +43,7 @@ score = 0.9368
 
 avg / total       0.94      0.94      0.94      5000
 
-conf:
+configuration:
   - 150, hidden layers
   - early_stopping True
   - max_iter 200
@@ -64,7 +64,7 @@ score = 0.9446
 
 avg / total       0.95      0.94      0.94      5000
 
-conf:
+configuration:
   - 300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -85,7 +85,7 @@ score = 0.9504
 
 avg / total       0.95      0.95      0.95      5000
 
-conf:
+configuration:
   - 400, hidden layers
   - early_stopping True
   - max_iter 200
@@ -111,40 +111,40 @@ avg / total       0.95      0.95      0.95      5000
 
 fixing the number of hidden nodes in the first layer to 300 and increasing number of hidden nodes in sec layer starting from 40 till 300
 
-conf:
+configuration:
   - 300,40, hidden layers
   - early_stopping True
   - max_iter 200
   - activation tanh
 score = 0.949
 
-conf:
+configuration:
   - 300,60, hidden layers
   - early_stopping True
   - max_iter 200
   - activation tanh
 score = 0.9532
 
-conf:
+configuration:
   - 300,100, hidden layers
   - early_stopping True
   - max_iter 200
   - activation tanh
 score = 0.9526
 
-conf:
+configuration:
   - 300,200, hidden layers
   - early_stopping True
   - max_iter 200
   - activation tanh
 score = 0.948
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
   - activation tanh
-score = 0.954 << MAX
+score = 0.954
 
               precision    recall  f1-score   support
 
@@ -163,7 +163,7 @@ avg / total       0.95      0.95      0.95      5000
 
 - Multi layer with 3 hidden layers and tanh as the activation function
 
-conf:
+configuration:
   - 100,50,25 hidden layers
   - early_stopping True
   - max_iter 200
@@ -184,7 +184,7 @@ score = 0.948
 
 avg / total       0.95      0.95      0.95      5000
 
-conf:
+configuration:
   - 100,100,100 hidden layers
   - early_stopping True
   - max_iter 200
@@ -213,7 +213,7 @@ CONCLUSION
 
 Now we will try changing the activation function in the best configuration from the previous results and see how it will affect the accuracy:
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -234,7 +234,7 @@ score = 0.8926
 
 avg / total       0.89      0.89      0.89      5000
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -255,7 +255,7 @@ score = 0.9424
 
 avg / total       0.94      0.94      0.94      5000
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -283,7 +283,7 @@ CONCLUSION:
 in all the previous trainings the default learning rate 'constant' with value = 0.001 was used
 Now we will try changing this learning rate in the configuration that gave us lowest error from the previous results and see how changing the learning rate will affect the accuracy:
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -305,7 +305,7 @@ score = 0.9466
 
 avg / total       0.95      0.95      0.95      5000
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -331,7 +331,7 @@ avg / total       0.20      0.29      0.21      5000
 
 Now we will try changing the momentum and see how it will affect accuracy
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -354,7 +354,7 @@ score = 0.882
 
 avg / total       0.88      0.88      0.88      5000
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -382,7 +382,7 @@ As we saw from the previous results decreasing the momentum decreased the accura
 The batch size in the previous tests was min(200, n_samples) and since the number of samples is 20000 the batch size was 200 so the training style was mini batches
 
 Now we will try changing the training style to batch by setting the batch size to the number of training samples = 20000 and see how it will affect the accuracy
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -407,7 +407,7 @@ avg / total       0.94      0.94      0.94      5000
 
 batch training style produced (93.9%) less accuracy than the mini batches training style
 
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -432,7 +432,7 @@ avg / total       0.11      0.11      0.11      5000
 sequential training style produced (11.43%) much less accuracy than the mini batches and batches training style
 
 now trying something in between 200 and 20000 to test mini batches again but with higher batch size
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping True
   - max_iter 200
@@ -455,7 +455,7 @@ score = 0.9604
   avg / total       0.96      0.96      0.96      5000
 
 In all the previous tests the early stopping technique was used we will now disable it and see how the accuracy will be affected
-conf:
+configuration:
   - 300,300, hidden layers
   - early_stopping False
   - max_iter 200
